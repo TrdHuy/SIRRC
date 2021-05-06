@@ -7,6 +7,10 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/PathDataStrings.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
             <Color x:Key="Primary">#2196F3</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>

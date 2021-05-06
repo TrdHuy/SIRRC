@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SIRRC.Views.Pages.ChilzatorPage"
+             xmlns:ctrl="clr-namespace:SIRRC.Utils.Controls"
+             xmlns:vm="clr-namespace:SIRRC.ViewModels.Pages">
+    <ContentPage.BindingContext>
+        <vm:ChilzatorViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid Background="Aqua">
+        <Label TextColor="Red"
+               Text="{StaticResource TickIcon_PathGeomerty}"/>
+
+        <ctrl:FlexiblePath 
+            Fill="White"
+            Stroke="Black"
+            DataString="{StaticResource TickIcon_PathGeomerty}"/>
+    </Grid>
+</ContentPage>

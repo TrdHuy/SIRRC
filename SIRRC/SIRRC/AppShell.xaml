@@ -2,9 +2,35 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:SIRRC.Views"
+       xmlns:pages="clr-namespace:SIRRC.Views.Pages"
+       xmlns:hpsctrl="clr-namespace:SIRRC.Utils.Controls"
        Title="SIRRC"
+       Padding="20"
        x:Class="SIRRC.AppShell">
 
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.9*"/>
+                </Grid.ColumnDefinitions>
+                
+                <hpsctrl:FlexiblePath x:Name="imageView"
+                      DataString="{Binding DataString}"
+                      Margin="5"
+                      Aspect="Uniform"
+                      VerticalOptions="Center"
+                      Stroke="Black"
+                      HeightRequest="30"
+                      Fill="Black"/>
+                <Label Grid.Column="1"
+                       VerticalTextAlignment="Center"
+                       Text="{Binding Title}"/>
+            </Grid>
+
+        </DataTemplate>
+    </Shell.ItemTemplate>
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
     
@@ -12,7 +38,11 @@
     -->
 
     <Shell.Resources>
+       
+        
         <ResourceDictionary>
+         
+            
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
@@ -32,7 +62,7 @@
             https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="DarkViolet"></Setter>
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -71,6 +101,7 @@
                 </Setter>
             </Style>
         </ResourceDictionary>
+        
     </Shell.Resources>
 
     <!-- 
@@ -78,12 +109,16 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-    </FlyoutItem>
+
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="About" Icon="icon_about.png">
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
+    <hpsctrl:ExtendFlyoutItem Title="Chilzator" DataString="{StaticResource TickIcon_PathGeomerty}">
+        <ShellContent Route="ChilzatorPage" ContentTemplate="{DataTemplate pages:ChilzatorPage}" />
+    </hpsctrl:ExtendFlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
